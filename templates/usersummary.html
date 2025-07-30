@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>User Summary</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+    <div id="main">
+        <!--Alert Message-->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-info">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <div id="canvas" class="overflow-auto">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Welcome to {{this_user.username}}</a>
+                    <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('user.user', user_id=this_user.id) }}">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('user.summary') }}">Summary</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/login">Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <a class="nav-link" href="{{ url_for('user.profile', user_id=this_user.id) }}">Edit_Profile</a>
+                </div>
+            </nav>
+
+            <div id="content">
+
+                <h3 class="headings">Reservation Summary for {{ this_user.full_name }}</h3>
+
+                <img src="{{ url_for('static', filename='summary_chart_user' ~ this_user.id ~ '.png') }}"
+                    style="max-width: 500px; height: auto; display: block; margin: 0 auto;">
+
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Spot ID</th>
+                            <th>Location</th>
+                            <th>Vehicle No</th>
+                            <th>Parking Time</th>
+                            <th>Leaving Time</th>
+                            <th>Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for r in reservations %}
+                        <tr>
+                            <td>{{ r.spot.id if r.spot else "N/A" }}</td>
+                            <td>{{ r.spot.parking_lot.prime_location_name if r.spot and r.spot.parking_lot else
+                                "Unknown" }}</td>
+                            <td>{{ r.vehicle_no }}</td>
+                            <td>{{ r.parking_timestamp }}</td>
+                            <td>{{ r.leaving_timestamp or "Still Parked" }}</td>
+                            <td>{{ r.parking_cost or r.calculate_cost() }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+
+
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>

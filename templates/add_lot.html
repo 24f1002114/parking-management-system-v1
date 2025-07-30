@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Add lot</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+ <style>
+        #form-body {
+            height: 600px;
+            width: 500px;
+            margin-top: 30px;
+        }
+    </style>   
+</head>
+<body>
+    <!-- Modal: Add Lot -->
+    <div id="main">
+        <div id="canvas" class="overflow-auto">
+
+            <div id="form-body">
+                <h2>Add Lot</h2>
+                <form action="/addlot" method="post">
+                    <div class="mb-3">
+                        <label for="prime_location" class="form-label">Prime Location Name</label>
+                        <input type="text" class="form-control" id="prime_location" name="prime_location_name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="in1" class="form-label">Price (per hour)</label>
+                        <input type="number" class="form-control" id="in1" name="price" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Address1" class="form-label">Address</label>
+                        <textarea class="form-control" id="Address1" name="address" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="PIN1" class="form-label">PIN Code</label>
+                        <input type="text" class="form-control" id="PIN1" name="pin" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="maximum_number_of_spots" class="form-label">Maximum Number of Spots</label>
+                        <input type="number" class="form-control" id="maximum_number_of_spots" name="maximum_number_of_spots" required>
+                    </div>
+                    
+                    <div style="text-align: center;">
+                        <input type="submit" class="btn btn-primary" value="Add Lot">
+                    </div>
+                </form>
+            </div>
+    </div>
+</body>
+</html>

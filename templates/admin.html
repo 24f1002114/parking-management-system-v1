@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+    <div id="main">
+        <!--Alert Message-->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-info">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <div id="canvas" class="overflow-auto">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Welcome to {{this_user.username}}</a>
+                    <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('admin.admin') }}">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('admin.registered_users') }}">Users</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="">Search</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="">Summary</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('admin.login') }}">Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="text-center">  
+             <a class="nav-link" href="{{ url_for('admin.profile') }}">Edit_Profile</a>
+             </div>
+            </nav>
+            <div id="content">
+                <!-- Parking Lots Display -->
+                <div class="mb-5">
+                    <h2 class="headings text-center">Parking Lots</h2>
+                    <div class="row row-cols-1 row-cols-md-4 g-4">
+                        {% for lot in parking_lots %}
+                        <div class="col" style="margin-top: 50px;">
+                            <div class="parking-lot">
+                                <h6 class="text-center">{{ lot.prime_location_name }}</h6>
+                                <p class="text-muted text-center mb-2"> <a href="/editlot/{{ lot.id }}">View/Edit</a>|
+                                    <a href="/deletelot/{{ lot.id }}"
+                                        onclick="return confirm('Are you sure you want to delete this lot? This will remove all related spots and reservation history.')">Delete</a>
+                                </p>
+                                {% set occupied_count = lot.spots | selectattr('status', 'equalto', 'O') | list | length
+                                %}
+                                {% set available_count = lot.spots | selectattr('status', 'equalto', 'A') | list |
+                                length %}
+                                <p class="text-center">
+                                    Price/hour: ₹ {{ lot.price }}
+                                </p>
+                                <p class="text-center">
+                                    Occupied: {{ occupied_count }} | Available: {{ available_count }}
+                                </p>
+                                <div class="row row-cols-5 g-2">
+                                    {% for spot in lot.spots %}
+                                    <div class="col">
+                                        {% if spot.status=='O' %}
+                                        <div class="parking-spot occupied">
+                                            <a href="/occupiedspots/{{ spot.id }}" type="button"
+                                                class="btn btn-danger mx-1 ">O</a>
+                                        </div>
+                                        {% else %}
+                                        <div class="parking-spot available">
+                                            <a href="/spot/{{ spot.id }}" type="button" class="btn btn-info mx-1">A</a>
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div style="text-align: center;">
+                    <a href="/addlot" class="btn btn-primary">Add Lot</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

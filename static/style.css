@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+   
+}
+
+#main,
+#canvas {
+    border: 2px solid black;
+    
+     
+}
+
+#canvas {
+    width: 65%;
+    height: 800px;
+    margin: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
+
+#form-body {
+    width: 325px;
+    height: 400px;
+    margin: auto;
+    border: 1px solid grey;
+    margin-top: 130px;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10Px;
+    padding-top: 10px;
+}
+.headings{
+    margin: 3px;
+    padding-left: 3px;
+    margin-top: 30px;
+    padding-bottom: 5px;
+}
+
+.parking-lot {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            margin-bottom: 20px;
+        }
+.parking-spot {
+            height: 40px;
+            border: 1px solid #aaa;
+            background-color: #e2e6ea;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+        }
+
+
+  
+.occupied {
+            background-color: #dc3545;
+            color: white;
+        }
+.available {
+            background-color: #198754;
+            color: white;
+        } 
+
+        
+.table-container {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.fixed-header-table {
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.fixed-header-table thead th {
+    position: sticky;
+    top: 0;
+    background-color: #f8f9fa;
+    z-index: 1;
+}
+
+.chart-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+    }
+.chart-box {
+            width: 45%;
+            border: 2px solid #ccc;
+            border-radius: 12px;
+            padding: 1rem;
+            margin: 1rem 0;
+            text-align: center;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+     }
+   

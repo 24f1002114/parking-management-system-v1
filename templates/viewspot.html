@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>View Spot</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div id="main">
+        <!--Alert Message-->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-info">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <!--Display Available spot details and delete it-->
+        <div id="canvas" class="overflow-auto">
+            <div id="content">
+                <h3 class="headings text-center" style="padding-top: 150px;">Delete Parking Spot</h3>
+                <table class="table table-bordered text-center" style="margin-top: 50px;">
+                    <tbody>
+                        <tr>
+                            <th scope="row">Spot ID</th>
+                            <td>{{ spot.id }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Status</th>
+                            <td>
+                                {% if spot.status == 'A' %}
+                                <span class="btn btn-neutral">Available</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="row mb-3" style="padding-left: 100px; padding-right: 100px; margin-top: 100px;">
+                    {% if spot.status == 'A' %}
+                    <div class="col d-flex justify-content-between">
+                        <form action="/spot/{{ spot.id }}" method="post">
+                            <input type="submit" class="btn btn-danger"onclick="return confirm('Are you sure you want to update this lot? This action may delete all related spots and reservation history.')" value="Delete">
+                        </form>
+                        <a href="/admin" class="btn btn-primary">Close</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

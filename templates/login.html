@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<Head>
+    <title>User Login</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
+    <style>
+        #form-body {
+            height: 330px;
+        }
+    </style>
+</Head>
+
+<body>
+    <div id="main">
+        <!--Alert Message-->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-info">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <div id="canvas">
+            <div id="form-body">
+                <!--Login Form-->
+                <h2>User Login</h2>
+                <form action="/login" method="post">
+                    <div class="mb-3">
+                        <label for="Email1" class="form-label">User Name</label>
+                        <input type="text" class="form-control" id="Email1" name="username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="Password" name="pwd" required>
+                    </div>
+                    <div style="text-align: center; margin-top: 20px;">
+                        <input type="submit" class="btn btn-primary" value="login"> <br>
+                        <div style="margin-top: 10px;">Are you new user? <a href="/signup">Create an account</a></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+</body>
+
+</html>

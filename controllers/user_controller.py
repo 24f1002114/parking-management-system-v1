@@ -70,7 +70,11 @@ def book_spot(lot_id):
             vehicle_no = request.form.get("vehicle_no")
             if user_id is None:
                 return "User not logged in", 403 
-            reservation = Reserve_parking_spot(user_id=user_id,spot_id=available_spot.id,vehicle_no=vehicle_no,parking_timestamp=datetime.now())
+            reservation = Reserve_parking_spot(user_id=user_id,  
+                                      spot_id=available_spot.id,
+                                      vehicle_no=vehicle_no,
+                                      parking_timestamp=datetime.now()
+                                      )
             available_spot.status = 'O'
             db.session.add(reservation)
             db.session.commit()
@@ -122,7 +126,11 @@ def summary():
     chart_path = os.path.join("static", f"summary_chart_user{this_user.id}.png")
     plt.savefig(chart_path, bbox_inches='tight')
     plt.close()
-    return render_template("usersummary.html",this_user=this_user,chart_path=chart_path,reservations=reservations)
+    return render_template(
+        "usersummary.html",
+        this_user=this_user,
+        chart_path=chart_path,
+        reservations=reservations)
 
 @user_bp.route("/profile/<int:user_id>", methods=["GET", "POST"])
 def profile(user_id):

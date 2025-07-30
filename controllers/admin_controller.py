@@ -147,6 +147,78 @@ def registered_users():
     users = User.query.filter(User.type != "admin").all()
     return render_template("registereduser.html",users=users,this_user=this_user)
 
+@admin_bp.route("/search",methods=["GET","POST"])
+def search():
+    this_user = User.query.filter_by(type='admin').first()
+    lots = []
+    user_details = None
+     # To hold a "no match" message
+
+    if request.method == "POST":
+        search_type = request.form.get("search")
+        search_string = request.form.get("search_string")
+
+        if search_type == "location":
+            lots = Parking_lot.query.filter(
+                Parking_lot.prime_location_name.ilike(f"%{search_string}%")).all()
+            if not lots:
+                flash("No parking lots found with that location.")
+
+        elif search_type == "user_id":
+            try:
+                user_id = int(search_string)
+                user_details = User.query.get(user_id)
+                if not user_details:
+                    message = "No user found with that ID."
+            except ValueError:
+                flash("Invalid User ID format.")
+
+    return render_template(
+        "search.html",
+        this_user=this_user,
+        lots=lots,
+        user_details=user_details,
+        
+    )
+
+
+@admin_bp.route("/summary")
+def summary():
+    this_user = User.query.filter_by(type='admin').first()
+    lots = Parking_lot.query.all()
+    revenue_data = []
+    labels = []
+    for lot in lots:
+        total_revenue = 0
+        for spot in lot.spots:
+            if spot.reservation and spot.reservation.parking_cost:
+                total_revenue += float(spot.reservation.parking_cost)
+        revenue_data.append(total_revenue)
+        labels.append(lot.prime_location_name)
+
+    # Status of all spots
+    occupied = Parking_spot.query.filter_by(status="O").count()
+    available = Parking_spot.query.filter_by(status="A").count()
+
+    # --- Generate Pie Chart: Revenue from Lots ---
+    fig1, ax1 = plt.subplots()
+    ax1.pie(revenue_data, labels=labels, autopct='%1.1f%%', startangle=90)
+    ax1.axis('equal')
+    pie_path = "static/revenue_pie.png"
+    fig1.savefig(pie_path)
+    plt.close(fig1)
+
+    # --- Generate Bar Chart: Spot Status ---
+    fig2, ax2 = plt.subplots()
+    ax2.bar(["Occupied", "Available"], [occupied, available], color=['coral', 'skyblue'])
+    ax2.set_ylabel("Spots")
+    ax2.set_title("Spot Availability Summary")
+    bar_path = "static/spot_bar.png"
+    fig2.savefig(bar_path)
+    plt.close(fig2)
+
+    return render_template("summaryadmin.html", pie_chart=pie_path, bar_chart=bar_path,this_user=this_user)
+    
 @admin_bp.route("/adminprofile", methods=["GET", "POST"])
 def profile():
     admin = User.query.filter_by(type="admin").first()

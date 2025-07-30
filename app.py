@@ -6,7 +6,7 @@ from flask_migrate import Migrate
 app = None
 def create_app():
     app = Flask(__name__) # Create a new Flask application
-    app.secret_key = "ans1234"
+    app.secret_key = "your-secret-key"
     app.register_blueprint(user_bp)
     app.register_blueprint(admin_bp) 
     app.debug=True # Enable debug mode for development

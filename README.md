@@ -68,7 +68,7 @@ The project follows a **modular structure** using Flask **Blueprints**, ensuring
 ---
 
 ## 🗂 Folder Structure
-
+```
 parking_app_24F1002114/
 │
 ├── app.py
@@ -102,7 +102,7 @@ parking_app_24F1002114/
 │ ├── userprofileuserprofile.html
 │ ├── usersummary.html
 │ └── viewspot.html
-
+```
 
 ---
 

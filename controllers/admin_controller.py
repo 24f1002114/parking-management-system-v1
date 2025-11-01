@@ -138,7 +138,7 @@ def occupied_spot(spot_id):
         # Fetch latest reservation for the spot
         latest_reservation = Reserve_parking_spot.query.filter_by(spot_id=spot_id,leaving_timestamp=None).order_by(Reserve_parking_spot.parking_timestamp.desc()).first()
         if latest_reservation:
-            return render_template("Occupied_spot_details.html", spot=spot, reservation=latest_reservation)
+            return render_template("occupied_spot_details.html", spot=spot, reservation=latest_reservation)
     return redirect(url_for("admin.admin"))
 
 @admin_bp.route("/registered_users")

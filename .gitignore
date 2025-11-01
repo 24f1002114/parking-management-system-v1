@@ -1,0 +1,29 @@
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+.venv/
+venv/
+
+# Environment variables
+.env
+
+# Flask instance (for config, uploads, etc.)
+instance/
+*.sqlite3
+
+# Logs and temp files
+*.log
+*.tmp
+
+# IDE/editor settings
+.vscode/
+.idea/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+migrations/
+

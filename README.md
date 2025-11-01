@@ -146,7 +146,7 @@ parking-management-system-v1/
 
 ---
 
-## 🧰 Setup Instructions
+## Setup Instructions
 
 1. **Clone the repository**
    ```bash

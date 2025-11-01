@@ -1,8 +1,8 @@
-# 🚗 Vehicle Parking Management System
+# Vehicle Parking Management System
+A Flask-based full-stack web app that streamlines parking lot management for admins and users, featuring real-time booking, analytics.
 
 ## Author
 **Name:** Anshul Shakya  
-**Roll No.:** 24F1002114  
 **Email:** 24f1002114@ds.study.iitm.ac.in  
 
 ---
@@ -27,16 +27,23 @@ The application integrates backend logic with a clean frontend UI and proper dat
 | 4 | SQLite, SQLAlchemy | Database and ORM handling |
 | 5 | JavaScript | Form validation and dynamic actions |
 
-### 📦 Libraries Used
-- **flask** – Web framework for routing and sessions  
-- **Blueprint** – Modular route management  
-- **render_template** – Template rendering  
-- **request, redirect, url_for, session, flash** – Request handling and user sessions  
-- **matplotlib.pyplot** – Chart visualization for summaries  
-- **SQLAlchemy** – ORM for database operations  
-- **datetime** – Time-based calculations for bookings  
-- **os** – File path management  
-- **collections.Counter** – Counting reservation data  
+## 📚 Libraries Used
+
+| Library | Purpose |
+|----------|----------|
+| **Flask** | Core web framework handling routing, requests, and responses |
+| **Flask-SQLAlchemy** | ORM for database operations with SQLite |
+| **Flask-Migrate** | Handles database migrations using Alembic |
+| **Jinja2** | Template engine for rendering dynamic HTML pages |
+| **Matplotlib** | Generates charts and visual summaries for admin analytics |
+| **SQLAlchemy** | Underlying ORM engine for data modeling |
+| **Werkzeug** | Provides low-level utilities for WSGI, security, and debugging |
+| **itsdangerous** | Safely signs data for session management |
+| **Click** | Command-line interface support for Flask commands |
+| **NumPy** | Supports numerical operations and chart data processing |
+| **Pillow** | Image processing for chart generation and saving |
+
+ 
 
 ---
 
@@ -145,6 +152,9 @@ parking_app_24F1002114/
    ```bash
    https://github.com/24f1002114/parking-management-system-v1.git
    cd parking-management-system-v1
+   pip install -r requirements.txt
+   python3 app.py
+
 
 
 ---

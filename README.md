@@ -78,7 +78,7 @@ The project follows a **modular structure** using Flask **Blueprints**, ensuring
 
 ## 🗂 Folder Structure
 ```
-parking_app_24F1002114/
+parking-management-system-v1/
 │
 ├── app.py
 │
@@ -150,10 +150,27 @@ parking_app_24F1002114/
 
 1. **Clone the repository**
    ```bash
-   https://github.com/24f1002114/parking-management-system-v1.git
-   cd parking-management-system-v1
-   pip install -r requirements.txt
-   python3 app.py
+    git clone https://github.com/24f1002114/parking-management-system-v1.git
+    cd parking-management-system-v1
+2. **Create and activate virtual environment**  
+    ```bash
+    python3 -m venv venv
+    source venv/bin/activate   # On Windows: venv\Scripts\activate
+3. **Install dependencies**  
+    ```bash
+    pip install -r requirements.txt
+4. **Run the application**  
+    ```bash
+    python3 app.py
+5. **Access the app**  
+    ```
+    Open your browser and go to:
+    http://127.0.0.1:5000/login  
+    ```
+
+   
+
+
 
 
 

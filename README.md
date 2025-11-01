@@ -49,6 +49,8 @@ It includes tables for:
 - Reservations  
 
 Each model is linked using relationships to maintain data consistency.
+
+---
 ![Database Schema](static/schema.png)
 
 ---

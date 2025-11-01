@@ -1,2 +1,150 @@
-# library-management-system-v1
-Vehicle Parking App - V1 It is a multi-user app (one requires an administrator and other users) that manages different parking lots, parking spots and parked vehicles. this parking app is for 4-wheeler parking.
+# 🚗 Vehicle Parking Management System
+
+## Author
+**Name:** Anshul Shakya  
+**Roll No.:** 24F1002114  
+**Email:** 24f1002114@ds.study.iitm.ac.in  
+
+---
+
+## 🧩 Project Description
+This project is a **multi-user vehicle parking management system** built using **Flask**, **SQLite**, and **Bootstrap**.  
+It allows:
+- **Admins** to manage parking lots, view spot statuses, and generate reports.
+- **Users** to register, book, and release parking spots.  
+
+The application integrates backend logic with a clean frontend UI and proper database management, ensuring a seamless experience.
+
+---
+
+## 🧠 Technologies Used
+
+| SN | Technology | Purpose |
+|----|-------------|----------|
+| 1 | Flask | Server-side logic, routing, and request handling |
+| 2 | Jinja2 | Dynamic HTML rendering |
+| 3 | HTML, CSS, Bootstrap | Frontend design and responsiveness |
+| 4 | SQLite, SQLAlchemy | Database and ORM handling |
+| 5 | JavaScript | Form validation and dynamic actions |
+
+### 📦 Libraries Used
+- **flask** – Web framework for routing and sessions  
+- **Blueprint** – Modular route management  
+- **render_template** – Template rendering  
+- **request, redirect, url_for, session, flash** – Request handling and user sessions  
+- **matplotlib.pyplot** – Chart visualization for summaries  
+- **SQLAlchemy** – ORM for database operations  
+- **datetime** – Time-based calculations for bookings  
+- **os** – File path management  
+- **collections.Counter** – Counting reservation data  
+
+---
+
+## 🧱 Database Schema
+The system uses **SQLite** with ORM mapping through **SQLAlchemy**.  
+It includes tables for:
+- Users  
+- Parking Lots  
+- Parking Spots  
+- Reservations  
+
+Each model is linked using relationships to maintain data consistency.
+![Database Schema](static/schema.png)
+
+---
+
+## 🧩 Architecture and Features
+
+The project follows a **modular structure** using Flask **Blueprints**, ensuring scalability and maintainability.
+
+- **app.py** – Initializes Flask and registers blueprints.  
+- **controllers/** – Contains route logic:
+  - `admin_controller.py` → Admin routes  
+  - `user_controller.py` → User routes  
+- **models/** – Defines database models and initialization.  
+- **templates/** – Holds HTML templates for admin and user views.  
+- **static/** – Contains CSS, JS, and chart files.  
+
+---
+
+## 🗂 Folder Structure
+
+parking_app_24F1002114/
+│
+├── app.py
+│
+├── controllers/
+│ ├── admin_controller.py
+│ └── user_controller.py
+│
+├── models/
+│ ├── database.py
+│ └── moddel.py
+│
+├── static/
+│ ├── style.css
+│ └── charts and graph/
+│
+├── templates/
+│ ├── add_lot.html
+│ ├── admin.html
+│ ├── adminprofile.html
+│ ├── bookspot.html
+│ ├── edit_lot.html
+│ ├── login.html
+│ ├── occupied_spot_details.html
+│ ├── registereduser.html
+│ ├── releasespot.html
+│ ├── search.html
+│ ├── signup.html
+│ ├── summaryadmin.html
+│ ├── user.html
+│ ├── userprofileuserprofile.html
+│ ├── usersummary.html
+│ └── viewspot.html
+
+
+---
+
+
+## ⚙️ Admin Features
+
+| Feature | Route | Description |
+|----------|--------|-------------|
+| Login & Signup | `/login`, `/signup` | Handles authentication for users and admins |
+| Dashboard | `/admin` | Displays all users and lots |
+| Profile | `/adminprofile` | Manage admin profile |
+| Add Lot | `/addlot` | Create new parking lot |
+| Edit Lot | `/editlot/<lot_id>` | Modify lot details |
+| Delete Lot | `/deletelot/<lot_id>` | Remove unoccupied lots |
+| View Spot | `/spot/<spot_id>` | Spot details and deletion |
+| Occupied Spot | `/occupiedspots/<spot_id>` | Reservation info |
+| Registered Users | `/registered_users` | View all users |
+| Search | `/search` | Search users or lots |
+| Summary | `/summary` | Generate charts for revenue and occupancy |
+
+---
+
+## 👥 User Features
+
+| Feature | Route | Description |
+|----------|--------|-------------|
+| Dashboard | `/user/<user_id>` | View reservations and search lots |
+| Profile | `/profile/<user_id>` | Update profile info |
+| Book Spot | `/book/<lot_id>` | Book available spots |
+| Release Spot | `/release/<spot_id>` | Release booked spots and calculate cost |
+| Summary | `/usersummary` | View booking statistics and charts |
+
+---
+
+## 🧰 Setup Instructions
+
+1. **Clone the repository**
+   ```bash
+   https://github.com/24f1002114/parking-management-system-v1.git
+   cd parking-management-system-v1
+
+
+---
+
+
